@@ -98,31 +98,6 @@ router.get('/movies/:indexNumber', function(req, res){
     res.send(finalMovie)
 })
 
-router.get('/films/:filmId', function(req, res){
-    let movies=[{
-        "id": 1,
-        "name": "The Shining"
-    },{
-        "id": 2,
-        "name": "Incedies"
-    },{
-        "id":3,
-        "name":"Rang de Basanti"
-    }]
-
-    let movieIndex=req.params.indexNumber
-    let finalMovie=""
-    if(movieIndex<movies.length){
-        finalMovie=movies[movieIndex];
-    } else {
-        finalMovie=("the movie with index no. doesnt exist")
-    }
-    console.log(movies.length)
-    console.log('The request objects is '+ JSON.stringify(req.query))
-    console.log('Movies name is '+req.params.moviesName)
-    res.send(finalMovie)
-})
-
 //4
 router.get("/sol2", function(req,res){
     let a= [ {
@@ -136,6 +111,33 @@ router.get("/sol2", function(req,res){
 
 
 //5
+router.get('/films/:indexNumber', function(req, res){
+    let films=[{
+        "id": 1,
+        "name": "The Shining"
+    },{
+        "id": 2,
+        "name": "Incedies"
+    },{
+        "id":3,
+        "name":"Rang de Basanti"
+    },{
+        "id":4,
+        "name":"Finding Nemo"
+    }]
+
+    let movieIndex=req.params.indexNumber;
+    let finalMovie="";
+    if(movieIndex<films.length){
+        finalMovie=films[movieIndex];
+    } else {
+        finalMovie=("the movie with index no. doesnt exist")
+    }
+    console.log(films.length)
+    console.log('The request objects is '+ JSON.stringify(req.params))
+    console.log('Movies name is '+req.params.moviesName)
+    res.send(finalMovie)
+})
 
 
 // ASSIGNMENT 3 - PRITESH SIR
