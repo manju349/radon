@@ -7,9 +7,13 @@ const createBook= async function (req, res) {
 }
 
 const getBookData= async function (req, res) {
-    let allUsersBook= await UserModel.find()
+    let allUsersBook= await UserModel1.find()
     res.send({msg: allUsersBook})
 }
 
 module.exports.createBook=createBook
 module.exports.getBookData=getBookData
+
+
+
+
