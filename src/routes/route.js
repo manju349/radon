@@ -19,13 +19,6 @@ router.get("/getBookDatas", BooksController.getBookData)
 
 //.....................................................................
 
-const express=require('express');
-const router=express.Router();
-const userModel1=require("../models/userModel1")
-const booksController=require("../controllers/booksController")
-
-router.post("/creatBooks",booksController.createBook)
-router.get("/getBooksDatas", booksController.getBookData)
 
 
 
