@@ -19,23 +19,24 @@ const bookList=async function(req,res){
 
 
 const getBooksInYear=async function(req,res){
-    let books=req.body.year
-    let allBooks=await userModel.find({year:2000}).select({bookName:1, year:1, _id:0})
+    let books=req.query.year
+    let allBooks=await userModel.find({year:books}).select({bookName:1, year:1, _id:0})
     res.send({msg: allBooks})
 }
 
 
 const getParticularBooks=async function(req,res){
-    let books=req.query.totalPages
-    let allUsersBook=await UserModel.find({totalPages:200}).select({bookName:1, totalPages:1, _id:0})
+    let allUsersBook=await UserModel.find({totalPages:req.query.totalPages}).select({bookName:1, totalPages:1, _id:0})
     res.send({msg: allUsersBook})
 }
+
 
 const getXINRBooks=async function(req,res){
     let allBooks=await userModel.find( { $or: [ {indianPrice:"100RS", indianPrice:"200RS", indianPrice:"500RS"} ]  
 })
 res.send({msg:allBooks})
 }
+
 
 const getRandomBooks=async function(req,res){
     let allBooks=await userModel.find({ stockAvailble: true,totalPages: { $gt:  200 }  })
