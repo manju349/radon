@@ -40,11 +40,6 @@ const getAllBooks=async function(req,res){
    res.send({data: allBooks})
 }
 
-// const getBooksWithAuthorDetails = async function (req, res) {
-//     let specificBook = await bookModel.find().populate('author_id')
-//     res.send({data: specificBook})
-
-// }
 
 const createPublisher2= async function (req, res) {
     let author = req.body
@@ -52,9 +47,26 @@ const createPublisher2= async function (req, res) {
     res.send({data: authorCreated})
 }
 
+const updateBooks=async function (req,res){
+    let data=req.body
+    let allBooks= await publisherModel2.updateMany(
+       $set[ {publisherName:"penguin"[ {isHardCover: true}]},{publisherName:"harper collins"[{isHardCover:true}]}])
+        console.log(allBooks)
+        res.send({data:allBooks})
+    }
+
+const updateBooks2=async function (req,res){
+    let data=req.body
+    let allBooks=await publisherModel2.find({ratings: {$gt: 50}}).findOneAndUpdate([+10])
+    res.send({data:allBooks})
+}
+
+
 module.exports.createAuthor= createAuthor
 module.exports.createBook= createBook
 module.exports.createPublisher=createPublisher
 module.exports.getAllBooks=getAllBooks
 
 module.exports.createPublisher2=createPublisher2
+module.exports.updateBooks=updateBooks
+module.exports.updateBooks2=updateBooks2
