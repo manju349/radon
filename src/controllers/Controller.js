@@ -3,6 +3,8 @@ const authorModel= require("../models/authorModel")
 const bookModel=require("../models/bookModel")
 const publisherModel=require("../models/publisherModel")
 const publisherModel2=require("../models/publisherModel2")
+const moment=require('moment')
+var getIP = require('ipware')().get_ip;
 
 
 const createAuthor= async function (req, res) {
@@ -62,6 +64,39 @@ const updateBooks2=async function (req,res){
 }
 
 
+const response=async function(req,res){
+   
+}
+
+const mid1=async function (req,res,next){
+    const today=moment();
+    console.log(today.format());
+    console.log(req.ip)
+    console.log(app.routes)
+    res.send({msg: "done"})
+    next()
+}
+
+
+
+
+const mid2=async function (req, res, next) {
+    var ipInfo = getIP(req);
+    console.log(ipInfo);
+    next();
+}
+
+const mid3=async function (req,res,next){
+    console.log(router.stack)
+    next();
+}
+
+
+
+module.exports.mid3=mid3
+module.exports.mid2=mid2
+module.exports.response=response
+module.exports.mid1=mid1
 module.exports.createAuthor= createAuthor
 module.exports.createBook= createBook
 module.exports.createPublisher=createPublisher
