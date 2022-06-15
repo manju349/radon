@@ -10,11 +10,10 @@ router.get("/test-me", function (req, res) {
 router.post("/users", userController.createUser)
 router.post("/login", userController.loginUser)
 
-router.put("/users/:userId", middleware.mid1, userController.updateUser)
-router.get("/getusers/:userId", middleware.mid1, userController.getUserData)
+router.put("/users/:userId", middleware.authenticate, middleware.authorise, userController.updateUser)
+router.get("/users/:userId", middleware.authenticate, middleware.authorise, userController.getUserData)
+router.delete("/users/:userId", middleware.authenticate, middleware.authorise, userController.deleteUser)
 
-//The userId is sent by front end
-router.delete("/users/:userId", middleware.mid1, userController.deleteUser)
 
 
 module.exports = router;
