@@ -2,7 +2,8 @@ let axios = require("axios")
 
 
 const createMeme= async function (req,res){
-    let template_id=req.query.template_id
+
+    try {let template_id=req.query.template_id
     let text0=req.query.text0
     let text1=req.query.text1
     let options = {
@@ -10,8 +11,12 @@ const createMeme= async function (req,res){
         url: `https://api.imgflip.com/caption_image?template_id=${template_id}&text0=${text0}&text1=${text1}&username=chewie12345&password=meme@123`
     }
     let result = await axios(options)
-    res.send({data: result.data})
+    res.status(200).send({data: result.data})}
 
+    catch (err) {
+        console.log(err)
+        res.status(500).send({ msg: err.message })
+    }
 }
 
 module.exports.createMeme=createMeme

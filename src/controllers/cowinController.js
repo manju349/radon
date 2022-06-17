@@ -61,12 +61,6 @@ let getByPin = async function (req, res) {
 }
 
 
-
-
-
-
-
-
 let getOtp = async function (req, res) {
     try {
         let blahhh = req.body
